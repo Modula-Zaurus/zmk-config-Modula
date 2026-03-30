@@ -1,0 +1,4 @@
+name: pmw3610_alt
+append:
+  EXTRA_DTC_OVERLAY_FILE: pmw3610_alt.overlay
+  EXTRA_CONF_FILE: pmw3610_alt.conf

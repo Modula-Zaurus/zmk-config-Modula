@@ -8,7 +8,7 @@ include:
 
   - board: xiao_ble//zmk
     shield: Modula_R rgbled_adapter
-    snippet: paw3222-thmb
+    snippet: paw3222
     artifact-name: Modula_R
 
   - board: xiao_ble//zmk
