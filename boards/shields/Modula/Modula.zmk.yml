@@ -1,0 +1,8 @@
+file_format: "1"
+id: Modula
+name: Modula
+type: shield
+url: https://github.com/taichan1113/zmk-config-Modula.git
+requires: [xiao_ble]
+features:
+  - keys

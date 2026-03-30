@@ -1,0 +1,66 @@
+#include <zephyr/dt-bindings/input/input-event-codes.h>
+#include <input/processors.dtsi>
+#include <input/processors/report_rate_limit.dtsi>
+#include <input/processors/xyz.dtsi>
+#include "../pinctrl_spi.dtsi"
+#include "../listners.dtsi"
+
+&spi0 {
+    status = "okay";
+    cs-gpios =  <&gpio1 12 GPIO_ACTIVE_LOW>;
+    pinctrl-0 = <&spi0_default>;
+    pinctrl-1 = <&spi0_sleep>;
+    pinctrl-names = "default", "sleep";
+    compatible = "nordic,nrf-spim";
+
+    trackball: trackball@0 {
+        status = "okay";
+        compatible = "pixart,pmw3610-alt";
+        reg = <0>;
+        spi-max-frequency = <1500000>;
+        irq-gpios = <&gpio0 5 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+        cpi = <800>;
+        evt-type = <INPUT_EV_REL>;
+        x-input-code = <INPUT_REL_X>;
+        y-input-code = <INPUT_REL_Y>;
+        force-awake;
+    };
+};
+
+&listner_central {
+    status = "okay";
+    device = <&trackball>;
+    input-processors
+        = <&zip_xy_transform INPUT_TRANSFORM_X_INVERT>
+        // , <&zip_report_rate_limit 8>
+        ;
+    scroller {
+        layers = <1>;
+        input-processors = <&zip_xy_transform INPUT_TRANSFORM_X_INVERT>
+        , <&zip_xy_transform INPUT_TRANSFORM_Y_INVERT>
+        , <&zip_xy_to_scroll_mapper>
+        // , <&zip_report_rate_limit 8>
+        ;
+    };
+};
+
+&listner_peripheral{
+    status = "okay";
+    device = <&split_peripheral>;
+    input-processors
+        = <&zip_zxy>
+        , <&zip_report_rate_limit 8>
+		, <&zip_xy_to_scroll_mapper>
+        , <&zip_scroll_scaler 3 1>
+		;
+};
+
+// &pointer {
+//     status = "okay";
+//     device = <&trackball>;
+// };
+
+// &cpi_cyc{
+//     status = "okay";
+//     sensor_device = <&trackball>;
+// };
