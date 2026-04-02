@@ -1,5 +1,5 @@
 config SHIELD_MODULA_R
-    def_bool $(shields_list_contains,MODULA_R)
+    def_bool $(shields_list_contains,Modula_R)
     
 config SHIELD_MODULA_L
-    def_bool $(shields_list_contains,MODULA_L)
+    def_bool $(shields_list_contains,Modula_L)
