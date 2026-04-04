@@ -13,7 +13,7 @@
     pinctrl-names = "default", "sleep";
     cs-gpios =  <&gpio1 12 GPIO_ACTIVE_LOW>;
 
-    trackball3: trackball3@0 {
+    trackball_paw3222: trackball_paw3222@0 {
         status = "okay";
         compatible = "pixart,paw3222";
         reg = <0>;
@@ -29,12 +29,12 @@
 
 &listner_central {
     status = "okay";
-    device = <&trackball3>;
+    device = <&trackball_paw3222>;
     input-processors
         = <&zip_xy_transform INPUT_TRANSFORM_X_INVERT>
         , <&zip_xy_transform INPUT_TRANSFORM_Y_INVERT>
         , <&zip_xy_scaler 3 2>
-        , <&zip_report_rate_limit 8>
+        // , <&zip_report_rate_limit 8>
         ;
     scroller {
         layers = <1>;
@@ -48,6 +48,7 @@
 
 &listner_peripheral{
     status = "okay";
+    device = <&split_peripheral>;
     input-processors
         = <&zip_zxy>
         , <&zip_report_rate_limit 8>

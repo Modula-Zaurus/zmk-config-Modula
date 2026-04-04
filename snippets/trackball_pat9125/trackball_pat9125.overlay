@@ -24,7 +24,7 @@
     // #address-cells = <1>;
     // #size-cells = <0>;
 
-	trackball2: trackball2@79 {
+	trackball_pat9125: trackball_pat9125@79 {
 		status = "okay";
 		compatible = "pixart,pat912x";
 		reg = <0x79>; // HIGH:0x73, LOW:0x75, NC:0x79
@@ -42,7 +42,7 @@
 
 &split_peripheral {
 	status = "okay";
-    device = <&trackball2>;
+  device = <&trackball_pat9125>;
 	input-processors = <&zip_report_rate_limit 8>, <&zip_xyz>;
 };
 

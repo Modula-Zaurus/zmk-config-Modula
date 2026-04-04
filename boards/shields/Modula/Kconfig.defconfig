@@ -1,23 +1,13 @@
 if SHIELD_MODULA_R
     config ZMK_SPLIT_ROLE_CENTRAL
         default y
-    config ZMK_SPLIT_BLE_CENTRAL_PERIPHERALS
-        default 1
 endif
 
 if SHIELD_MODULA_R||SHIELD_MODULA_L
     config ZMK_KEYBOARD_NAME
         default "Modula"
 
-    config GPIO
-        default y
     config ZMK_SPLIT
         default y
-    config ZMK_SPLIT_BLE
-        default y
-    config BT_PERIPHERAL_PREF_MIN_INT
-        default 12
-    config BT_PERIPHERAL_PREF_MAX_INT
-        default 12
     
 endif 
