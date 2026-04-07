@@ -26,7 +26,7 @@
 
 	trackball_pat9125: trackball_pat9125@79 {
 		status = "okay";
-		compatible = "pixart,pat912x";
+		compatible = "pixart,pat9125";
 		reg = <0x79>; // HIGH:0x73, LOW:0x75, NC:0x79
 		motion-gpios = <&gpio0 5 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
 		res-x-cpi = <300>;

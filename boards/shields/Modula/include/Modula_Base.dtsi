@@ -134,9 +134,9 @@
    };
 };
 
-&uicr {
-    nfct-pins-as-gpios;
-};
+// &uicr {
+//     nfct-pins-as-gpios;
+// };
 
 &xiao_spi {status = "disabled";};    // &spi2 {}
 // &xiao_i2c {status = "disabled";};    // &i2c1 {};
