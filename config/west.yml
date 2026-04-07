@@ -33,13 +33,13 @@ manifest:
       remote: badjeff
       revision: main
 
-    - name: zmk-input-processor-xyz
-      remote: badjeff
-      revision: main
+    # - name: zmk-input-processor-xyz
+    #   remote: badjeff
+    #   revision: main
 
-    - name: zmk-behavior-insomnia
-      remote: badjeff
-      revision: main
+    # - name: zmk-behavior-insomnia
+    #   remote: badjeff
+    #   revision: main
 
     # - name: zmk-layout-shift
     #   remote: kot149
