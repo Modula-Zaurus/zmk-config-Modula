@@ -11,3 +11,13 @@ if SHIELD_MODULA_R||SHIELD_MODULA_L
         default y
     
 endif 
+
+if ZMK_BACKLIGHT
+
+config PWM
+    default y
+
+config LED_PWM
+    default y
+
+endif # ZMK_BACKLIGHT
