@@ -4,7 +4,7 @@
     col-offset = <6>;
 };
 
-&left_encoder { // ToDo: must be moved to module/snippet
+&right_encoder { // ToDo: must be moved to module/snippet
     status = "okay"; 
     a-gpios = <&gpio1 0 (GPIO_ACTIVE_HIGH)>;
     b-gpios = <&gpio1 10 (GPIO_ACTIVE_HIGH)>;
@@ -12,14 +12,14 @@
 };
 
 
-// /delete-node/ &kscan2; // ToDo: must be moved to module/snippet
+/delete-node/ &kscan2; // ToDo: must be moved to module/snippet
 
-// / {
-//     kscan2: kscan2 { // ToDo: must be moved to module/snippet
-//         compatible = "zmk,kscan-gpio-direct";
-//         wakeup-source;
-//         input-gpios
-//             = <&gpio1 14 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
-//             ;
-//     };
-// };
+/ {
+    kscan2: kscan2 { // ToDo: must be moved to module/snippet
+        compatible = "zmk,kscan-gpio-direct";
+        wakeup-source;
+        input-gpios
+            = <&gpio0 16 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
+            ;
+    };
+};
