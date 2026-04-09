@@ -9,14 +9,48 @@
 // };
 
 
-// /delete-node/ &kscan2; // ToDo: must be moved to module/snippet
+/delete-node/ &kscan2; // ToDo: must be moved to module/snippet
 
-// / {
-//     kscan2: kscan2 { // ToDo: must be moved to module/snippet
-//         compatible = "zmk,kscan-gpio-direct";
-//         wakeup-source;
-//         input-gpios
-//             = <&gpio1 14 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
-//             ;
-//     };
-// };
+/ {
+    chosen {
+        zmk,backlight = &backlight;
+    };
+    kscan2: kscan2 { // ToDo: must be moved to module/snippet
+        compatible = "zmk,kscan-gpio-direct";
+        wakeup-source;
+        input-gpios
+            = <&gpio1 0 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
+            ;
+    };
+};
+
+&pinctrl {
+    // Other pinctrl definitions for other hardware
+    pwm0_default: pwm0_default {
+        group1 {
+            psels = <NRF_PSEL(PWM_OUT0, 1, 10)>;
+        };
+    };
+    pwm0_sleep: pwm0_sleep {
+        group1 {
+            psels = <NRF_PSEL(PWM_OUT0, 1, 10)>;
+            low-power-enable;
+        };
+    };
+};
+
+&pwm0 {
+    status = "okay";
+    pinctrl-0 = <&pwm0_default>;
+    pinctrl-1 = <&pwm0_sleep>;
+    pinctrl-names = "default", "sleep";
+};
+
+/ {
+    backlight: pwmleds {
+        compatible = "pwm-leds";
+        pwm_led_0 {
+            pwms = <&pwm0 0 PWM_MSEC(10) PWM_POLARITY_NORMAL>;
+        };
+    };
+};
