@@ -8,6 +8,8 @@ manifest:
       url-base: https://github.com/badjeff
     - name: sekigon-gonnoc
       url-base: https://github.com/sekigon-gonnoc
+    - name: MaXMaNDeV
+      url-base: https://github.com/MaXMaNDeV
     - name: BP
       url-base: https://github.com/taichan1113
 
@@ -37,13 +39,17 @@ manifest:
       remote: badjeff
       revision: main
 
+    - name: zmk-input-processor-xyz
+      remote: badjeff
+      revision: main
+
     - name: zmk-driver-pat9125 # https://github.com/taichan1113/zmk-driver-pat9125
       remote: BP
       revision: main
-
-    # - name: zmk-input-processor-xyz
-    #   remote: badjeff
-    #   revision: main
+    
+    - name: zmk-pat912x-driver
+      remote: MaXMaNDeV
+      revision: main
 
     # - name: zmk-behavior-insomnia
     #   remote: badjeff
