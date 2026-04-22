@@ -44,7 +44,7 @@
 	status = "okay";
   	device = <&trackball_pat9125>;
 	input-processors
-		= <&zip_report_rate_limit 16>
+		= <&zip_report_rate_limit 8>
 		, <&zip_xyz>;
 };
 
