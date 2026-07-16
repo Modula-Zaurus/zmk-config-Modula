@@ -55,6 +55,11 @@ manifest:
     #   remote: badjeff
     #   revision: main
 
+    - name: zmk-behavior-quick-scroll
+      path: zmk-behavior-quick-scroll
+      url: file:///home/takec/zmk-workspace/zmk-behavior-quick-scroll
+      revision: main
+
     # - name: zmk-layout-shift
     #   remote: kot149
     #   revision: v1
