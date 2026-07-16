@@ -1,11 +1,22 @@
 #include "Modula_Base.dtsi"
 
+// &pwm0 {status = "disabled";};
+// &backlight {status = "disabled";};
+
 &left_encoder { // ToDo: must be moved to module/snippet
+    status = "okay"; 
+    a-gpios = <&gpio1 13 (GPIO_ACTIVE_HIGH)>;
+    b-gpios = <&gpio1 14 (GPIO_ACTIVE_HIGH)>;
+    steps = <60>;
+};
+
+&right_encoder { // ToDo: must be moved to module/snippet
     status = "okay"; 
     a-gpios = <&gpio1 12 (GPIO_ACTIVE_HIGH)>;
     b-gpios = <&gpio1 15 (GPIO_ACTIVE_HIGH)>;
     steps = <60>;
 };
+
 
 /delete-node/ &kscan2; // ToDo: must be moved to module/snippet
 
@@ -14,7 +25,7 @@
         compatible = "zmk,kscan-gpio-direct";
         wakeup-source;
         input-gpios
-            = <&gpio0 16 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
+            = <&gpio0 4 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
             ;
     };
 };
