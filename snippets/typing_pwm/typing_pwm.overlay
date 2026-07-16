@@ -21,10 +21,11 @@
         pwms = <&pwm0 0 PWM_MSEC(10) PWM_POLARITY_NORMAL>;
         force-min = <10>;
         force-max = <100>;
-        fast-interval-ms = <80>;
-        slow-interval-ms = <300>;
-        idle-timeout-ms = <500>;
-        force-smoothing = <0>;
+        bucket-capacity = <100>;
+        bucket-fill-per-key = <25>;
+        bucket-leak-interval-ms = <50>;
+        bucket-leak-per-interval = <5>;
+        force-smoothing = <2>;
     };
 };
 
