@@ -1,0 +1,34 @@
+#include <zephyr/dt-bindings/pwm/pwm.h>
+
+&pinctrl {
+    pwm0_feedback_default: pwm0_feedback_default {
+        group1 {
+            psels = <NRF_PSEL(PWM_OUT0, 1, 15)>;
+        };
+    };
+
+    pwm0_feedback_sleep: pwm0_feedback_sleep {
+        group1 {
+            psels = <NRF_PSEL(PWM_OUT0, 1, 15)>;
+            low-power-enable;
+        };
+    };
+};
+
+/ {
+    typing_pwm: typing-pwm {
+        compatible = "zmk,typing-pwm";
+        pwms = <&pwm0 0 PWM_MSEC(10) PWM_POLARITY_NORMAL>;
+        force-min = <5>;
+        force-max = <80>;
+        wpm-scale = <2>;
+        force-smoothing = <2>;
+    };
+};
+
+&pwm0 {
+    status = "okay";
+    pinctrl-0 = <&pwm0_feedback_default>;
+    pinctrl-1 = <&pwm0_feedback_sleep>;
+    pinctrl-names = "default", "sleep";
+};

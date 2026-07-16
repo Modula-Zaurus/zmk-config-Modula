@@ -60,6 +60,11 @@ manifest:
       url: file:///home/takec/zmk-workspace/zmk-behavior-quick-scroll
       revision: main
 
+    - name: zmk-typing-pwm
+      path: zmk-typing-pwm
+      url: file:///home/takec/zmk-workspace/zmk-typing-pwm
+      revision: main
+
     # - name: zmk-layout-shift
     #   remote: kot149
     #   revision: v1

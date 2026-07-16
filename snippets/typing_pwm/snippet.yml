@@ -1,0 +1,3 @@
+name: typing_pwm
+append:
+  EXTRA_DTC_OVERLAY_FILE: typing_pwm.overlay

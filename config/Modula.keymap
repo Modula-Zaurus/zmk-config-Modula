@@ -4,7 +4,6 @@
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/pointing.h>
 #include <dt-bindings/zmk/outputs.h>
-#include <dt-bindings/zmk/backlight.h>
 
 #include "keycode_japanese.h"
 
@@ -230,11 +229,6 @@
             bindings = <&vol_alt_gui_p>, <&vol_alt_gui_n>;
             tap-ms = <10>;
         };
-        bl_up_down: backlight-up-down {
-            compatible = "zmk,behavior-sensor-rotate";
-            #sensor-binding-cells = <0>;
-            bindings = <&bl BL_INC>, <&bl BL_DEC>;
-        };
         vol_up_down: volume-up-down {
             compatible = "zmk,behavior-sensor-rotate";
             #sensor-binding-cells = <0>;
@@ -252,11 +246,11 @@
 &lth FCN TAB    &plt FCN Q    &kp W         &kp E     &kp R             &kp T                   &kp Y       &kp U           &kp I       &kp O       &kp P        &minus
 &mth LCTRL RET  &kp A         &kp S         &kp D     &kp F             &kp G                   &kp H       &kp J           &kp K       &kp L       &semi        &sqt
 &mth LSHIFT ESC &kp Z         &kp X         &kp C     &kp V             &kp B                   &kp N       &kp M           &kp COMMA   &kp DOT     &kp SLASH    &kp LGUI
-&kp  ESC        &trans        &trans        &lth SYMBOL SPACE &lth NAVNUM BSPC                  &kp LALT    &mt LSHFT RET               &tog MOUSE  &bl BL_CYCLE &tog SYMBOL
-&mb4_alt_gui_n  &qmsc SCUP_S &bl BL_TOG  &qmsc SCDN_S   &mb5_alt_gui_p            &kp LEFT    &kp UP          &kp C_MUTE  &kp DOWN   &kp RIGHT
+&kp  ESC        &trans        &trans        &lth SYMBOL SPACE &lth NAVNUM BSPC                  &kp LALT    &mt LSHFT RET               &tog MOUSE  &none &tog SYMBOL
+&mb4_alt_gui_n  &qmsc SCUP_S &none  &qmsc SCDN_S   &mb5_alt_gui_p            &kp LEFT    &kp UP          &kp C_MUTE  &kp DOWN   &kp RIGHT
 &kp C_MUTE &kp PSCRN
 			>;
-            sensor-bindings = <&bl_up_down &vol_alt_tab>;
+            sensor-bindings = <&vol_up_down &vol_alt_tab>;
 		};
 		
 		symbol_layer {
@@ -269,7 +263,7 @@
 &mb4_alt_gui_n  &msc MOVE_Y(120)   &kp PSCRN  &msc MOVE_Y(-120)   &mb5_alt_gui_p            &kp LEFT    &kp UP          &kp C_MUTE  &kp DOWN   &kp RIGHT
 &kp HOME &kp END
 			>;
-            sensor-bindings = <&bl_up_down &vol_alt_tab>;
+            sensor-bindings = <&vol_up_down &vol_alt_tab>;
 		};
 		
 		navnum_layer {
@@ -282,7 +276,7 @@
 &mb4_alt_gui_n  &msc MOVE_Y(1200)   &kp PSCRN  &msc MOVE_Y(-1200)   &mb5_alt_gui_p            &kp LEFT    &kp UP          &kp C_MUTE  &kp DOWN   &kp RIGHT
 &kp HOME &kp END
 			>;
-            sensor-bindings = <&bl_up_down &vol_alt_tab>;
+            sensor-bindings = <&vol_up_down &vol_alt_tab>;
 		};
 		
 		function_layer {
@@ -295,7 +289,7 @@
 &mb4_alt_gui_n  &msc MOVE_Y(120)   &kp PSCRN  &msc MOVE_Y(-120)   &mb5_alt_gui_p            &kp LEFT    &kp UP          &kp C_MUTE  &kp DOWN   &kp RIGHT
 &kp HOME &kp END
 			>;
-            sensor-bindings = <&bl_up_down &vol_alt_tab>;
+            sensor-bindings = <&vol_up_down &vol_alt_tab>;
 		};
 		
 		device_layer {
@@ -305,10 +299,10 @@
 &trans            &trans           &trans           &trans           &trans           &trans               &trans            &trans           &trans           &trans           &trans           &trans
 &trans            &trans           &trans           &trans           &trans           &trans               &trans            &trans           &trans           &trans           &trans           &trans
 &trans            &trans           &trans                            &trans           &trans               &trans            &trans                            &trans           &trans           &trans
-&mb4_alt_gui_n  &bl BL_INC   &bl BL_TOG  &bl BL_DEC   &mb5_alt_gui_p            &kp LEFT    &kp UP          &kp C_MUTE  &kp DOWN   &kp RIGHT
+&mb4_alt_gui_n  &none   &none  &none   &mb5_alt_gui_p            &kp LEFT    &kp UP          &kp C_MUTE  &kp DOWN   &kp RIGHT
 &kp HOME &kp END
 			>;
-            sensor-bindings = <&bl_up_down &vol_alt_tab>;
+            sensor-bindings = <&vol_up_down &vol_alt_tab>;
 		};
 
         mouse_layer {
@@ -321,7 +315,7 @@
 &mb4_alt_gui_n  &msc MOVE_Y(120)   &kp PSCRN  &msc MOVE_Y(-120)   &mb5_alt_gui_p            &kp LEFT    &kp UP          &kp C_MUTE  &kp DOWN   &kp RIGHT
 &kp HOME &kp END
 			>;
-            sensor-bindings = <&bl_up_down &vol_alt_tab>;
+            sensor-bindings = <&vol_up_down &vol_alt_tab>;
 		};
 	};
 };

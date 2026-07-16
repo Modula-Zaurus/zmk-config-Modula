@@ -1,11 +1,5 @@
 #include "Modula_Base.dtsi"
 
-/{
-    chosen {
-        zmk,backlight = &backlight;
-    };
-};
-
 &default_transform {
     col-offset = <6>;
 };
