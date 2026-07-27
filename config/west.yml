@@ -65,6 +65,11 @@ manifest:
       url: file:///home/takec/zmk-workspace/zmk-typing-pwm
       revision: main
 
+    - name: zmk-behavior-jp
+      path: zmk-behavior-jp
+      url: file:///home/takec/zmk-workspace/zmk-behavior-jp
+      revision: v0.3
+
     # - name: zmk-layout-shift
     #   remote: kot149
     #   revision: v1
