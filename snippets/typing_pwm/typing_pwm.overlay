@@ -19,13 +19,14 @@
     typing_pwm: typing-pwm {
         compatible = "zmk,typing-pwm";
         pwms = <&pwm0 0 PWM_MSEC(10) PWM_POLARITY_NORMAL>;
-        force-min = <10>;
+        force-min = <1>;
         force-max = <100>;
         bucket-capacity = <100>;
-        bucket-fill-per-key = <25>;
-        bucket-leak-interval-ms = <50>;
-        bucket-leak-per-interval = <5>;
-        force-smoothing = <2>;
+        bucket-fill-per-key = <10>;
+        bucket-leak-interval-ms = <20>;
+        bucket-leak-per-interval = <1>;
+        bucket-leak-extra-at-full = <5>;
+        force-smoothing = <1>;
     };
 };
 
