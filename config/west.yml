@@ -56,18 +56,15 @@ manifest:
     #   revision: main
 
     - name: zmk-behavior-quick-scroll
-      path: zmk-behavior-quick-scroll
-      url: file:///home/takec/zmk-workspace/zmk-behavior-quick-scroll
+      remote: BP
       revision: main
 
     - name: zmk-typing-pwm
-      path: zmk-typing-pwm
-      url: file:///home/takec/zmk-workspace/zmk-typing-pwm
+      remote: BP
       revision: main
 
     - name: zmk-behavior-jp
-      path: zmk-behavior-jp
-      url: file:///home/takec/zmk-workspace/zmk-behavior-jp
+      remote: BP
       revision: v0.3
 
     # - name: zmk-layout-shift
