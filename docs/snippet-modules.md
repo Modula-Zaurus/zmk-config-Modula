@@ -6,10 +6,10 @@
 - EC11 スロット 1: `encoder_ec11_left`（P1.13 / P1.14）
 - EC11 スロット 2: `encoder_ec11_right`（P1.12 / P1.15）
 
-PAT9125 と EC11 は別の GPIO/I2C 資源を使用するため、たとえば左 peripheral では次のように同時指定できます。
+`trackball_pat9125` は、モジュール上の EC11（P1.12 / P1.15）も同時に有効化します。別スロットの `encoder_ec11_left`（P1.13 / P1.14）とは GPIO が異なるため、左 peripheral では次のように同時指定できます。
 
 ```yaml
 snippet: trackball_pat9125 encoder_ec11_left
 ```
 
-EC11 snippets は 2 つとも指定できます。ただし `encoder_ec11_right` は P1.12 を使うため、同じピンを chip-select に使う SPI トラックボールとは併用しません。
+`encoder_ec11_right` は PAT9125 モジュール内 EC11 と同じ P1.12 / P1.15 を使うため、`trackball_pat9125` と同時指定しません。また、P1.12 を chip-select に使う SPI トラックボールとも併用しません。

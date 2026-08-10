@@ -43,6 +43,14 @@
 	device = <&trackball_pat9125>;
 };
 
+/* EC11 integrated on the PAT9125 module: P1.12 (A), P1.15 (B). */
+&right_encoder {
+	status = "okay";
+	a-gpios = <&gpio1 12 GPIO_ACTIVE_HIGH>;
+	b-gpios = <&gpio1 15 GPIO_ACTIVE_HIGH>;
+	steps = <60>;
+};
+
 // &pointer {
 //     status = "okay";
 //     device = <&trackball>;
