@@ -115,23 +115,7 @@
             tapping-term-ms = <200>;
             bindings = <&mo>, <&kp>;
         };
-
         // Encoders
-        // rot_kp: sensor_rotate_kp {
-        //     compatible = "zmk,behavior-sensor-rotate";
-        //     #sensor-binding-cells = <0>;
-        //     bindings = <&kp LEFT>, <&kp RIGHT>;
-        // };
-        // msc_rot: mouse_scroll_rotate {
-        //     compatible = "zmk,behavior-input-two-axis";
-        //     #binding-cells = <1>;
-        //     x-input-code = <INPUT_REL_HWHEEL>;
-        //     y-input-code = <INPUT_REL_WHEEL>;
-        //     trigger-period-ms = <16>; // default:16
-        //     delay-ms = <0>;
-        //     time-to-max-speed-ms = <0>;
-        //     acceleration-exponent = <1>;
-        // };
         mouse_scrl: mouse_wheel_scrl {
             compatible = "zmk,behavior-sensor-rotate";
             #sensor-binding-cells = <0>;
@@ -213,6 +197,18 @@
             #sensor-binding-cells = <0>;
             bindings = <&kp C_VOL_UP>, <&kp C_VOL_DN>;
         };
+        bri_up_down: brightness-up-down {
+            compatible = "zmk,behavior-sensor-rotate";
+            #sensor-binding-cells = <0>; 
+            bindings = <&kp C_BRI_INC>, <&kp C_BRI_DEC>;
+        };
+        alt_ctrl_mute: alt-control-mute {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp C_MUTE>, <&kp LC(TAB)>;
+            mods = <(MOD_LALT|MOD_RALT)>;
+            keep-mods = <(MOD_LALT)>;
+        };
 
     };
 
@@ -227,9 +223,9 @@
 &mth LSHIFT ESC &kp Z         &kp X         &kp C     &kp V             &kp B                   &kp N       &kp M           &kp COMMA   &kp DOT     &kp SLASH    &kp LGUI
 &kp  ESC        &trans        &trans        &lth SYMBOL SPACE &lth NAVNUM BSPC                  &kp LALT    &mt LSHFT RET               &tog MOUSE  &none &tog SYMBOL
 &mb4_alt_gui_n  &qmsc SCUP_S &none  &qmsc SCDN_S   &mb5_alt_gui_p            &kp LEFT    &kp UP          &kp C_MUTE  &kp DOWN   &kp RIGHT
-&kp C_MUTE &kp PSCRN
+&alt_ctrl_mute  &kp PSCRN
 			>;
-            sensor-bindings = <&vol_up_down &vol_alt_tab>;
+            sensor-bindings = <&bri_up_down &vol_alt_tab>;
 		};
 		
 		symbol_layer {
@@ -242,7 +238,7 @@
 &mb4_alt_gui_n  &msc MOVE_Y(120)   &kp PSCRN  &msc MOVE_Y(-120)   &mb5_alt_gui_p            &kp LEFT    &kp UP          &kp C_MUTE  &kp DOWN   &kp RIGHT
 &kp HOME &kp END
 			>;
-            sensor-bindings = <&vol_up_down &vol_alt_tab>;
+            sensor-bindings = <&bri_up_down &vol_alt_tab>;
 		};
 		
 		navnum_layer {
@@ -255,7 +251,7 @@
 &mb4_alt_gui_n  &msc MOVE_Y(1200)   &kp PSCRN  &msc MOVE_Y(-1200)   &mb5_alt_gui_p            &kp LEFT    &kp UP          &kp C_MUTE  &kp DOWN   &kp RIGHT
 &kp HOME &kp END
 			>;
-            sensor-bindings = <&vol_up_down &vol_alt_tab>;
+            sensor-bindings = <&bri_up_down &vol_alt_tab>;
 		};
 		
 		function_layer {
@@ -268,7 +264,7 @@
 &mb4_alt_gui_n  &msc MOVE_Y(120)   &kp PSCRN  &msc MOVE_Y(-120)   &mb5_alt_gui_p            &kp LEFT    &kp UP          &kp C_MUTE  &kp DOWN   &kp RIGHT
 &kp HOME &kp END
 			>;
-            sensor-bindings = <&vol_up_down &vol_alt_tab>;
+            sensor-bindings = <&bri_up_down &vol_alt_tab>;
 		};
 		
 		device_layer {
@@ -281,7 +277,7 @@
 &mb4_alt_gui_n  &none   &none  &none   &mb5_alt_gui_p            &kp LEFT    &kp UP          &kp C_MUTE  &kp DOWN   &kp RIGHT
 &kp HOME &kp END
 			>;
-            sensor-bindings = <&vol_up_down &vol_alt_tab>;
+            sensor-bindings = <&bri_up_down &vol_alt_tab>;
 		};
 
         mouse_layer {
@@ -294,7 +290,7 @@
 &mb4_alt_gui_n  &msc MOVE_Y(120)   &kp PSCRN  &msc MOVE_Y(-120)   &mb5_alt_gui_p            &kp LEFT    &kp UP          &kp C_MUTE  &kp DOWN   &kp RIGHT
 &kp HOME &kp END
 			>;
-            sensor-bindings = <&vol_up_down &vol_alt_tab>;
+            sensor-bindings = <&bri_up_down &vol_alt_tab>;
 		};
 	};
 };

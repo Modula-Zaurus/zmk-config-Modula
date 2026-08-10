@@ -8,10 +8,10 @@ manifest:
       url-base: https://github.com/badjeff
     - name: sekigon-gonnoc
       url-base: https://github.com/sekigon-gonnoc
-    - name: MaXMaNDeV
-      url-base: https://github.com/MaXMaNDeV
     - name: BP
       url-base: https://github.com/taichan1113
+    # - name: MaXMaNDeV
+    #   url-base: https://github.com/MaXMaNDeV
 
   projects:
     - name: zmk
@@ -25,30 +25,18 @@ manifest:
       revision: v0.3-branch
       # revision: main
 
-    # - name: zmk-pmw3610-driver # https://github.com/badjeff/zmk-pmw3610-driver
-    #   remote: badjeff
-    #   revision: zmk-v0.3
-    #   revision: main
+    - name: zmk-pmw3610-driver # https://github.com/badjeff/zmk-pmw3610-driver
+      remote: badjeff
+      revision: zmk-v0.3
+      revision: main
 
     - name: zmk-driver-paw3222
       remote: sekigon-gonnoc
       revision: main
       # revision: torabo-tsuki
 
-    - name: zmk-input-processor-report-rate-limit # https://github.com/badjeff/zmk-input-processor-report-rate-limit
-      remote: badjeff
-      revision: main
-
-    - name: zmk-input-processor-xyz
-      remote: badjeff
-      revision: main
-
     - name: zmk-driver-pat9125 # https://github.com/taichan1113/zmk-driver-pat9125
       remote: BP
-      revision: main
-    
-    - name: zmk-pat912x-driver
-      remote: MaXMaNDeV
       revision: main
 
     # - name: zmk-behavior-insomnia
