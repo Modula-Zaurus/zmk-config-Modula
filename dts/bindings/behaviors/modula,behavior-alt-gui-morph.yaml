@@ -1,15 +1,10 @@
-description: Select one of two encoded keycodes when Alt or GUI is held
+description: Select a binding for normal, Alt, or GUI input
 
 compatible: "modula,behavior-alt-gui-morph"
 
-include: two_param.yaml
+include: zero_param.yaml
 
 properties:
-  mods:
-    type: int
+  bindings:
+    type: phandle-array
     required: true
-    description: Modifier flags that select the second keycode.
-  keep-mods:
-    type: int
-    required: false
-    description: Modifier flags that remain active while the second keycode is sent.

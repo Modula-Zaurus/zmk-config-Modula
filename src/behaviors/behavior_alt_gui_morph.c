@@ -19,59 +19,55 @@ LOG_MODULE_DECLARE(zmk, CONFIG_ZMK_LOG_LEVEL);
 #if DT_HAS_COMPAT_STATUS_OKAY(DT_DRV_COMPAT)
 
 struct behavior_alt_gui_morph_config {
-    zmk_mod_flags_t mods;
-    zmk_mod_flags_t masked_mods;
+    struct zmk_behavior_binding normal_binding;
+    struct zmk_behavior_binding alt_binding;
+    struct zmk_behavior_binding gui_binding;
 };
 
 struct behavior_alt_gui_morph_data {
-    uint32_t pressed_keycodes[ZMK_KEYMAP_LEN];
-    bool active[ZMK_KEYMAP_LEN];
+    struct zmk_behavior_binding *pressed_binding;
 };
 
 static int on_alt_gui_morph_pressed(struct zmk_behavior_binding *binding,
                                     struct zmk_behavior_binding_event event) {
-    if (event.position >= ZMK_KEYMAP_LEN) {
-        return -EINVAL;
-    }
-
     const struct device *dev = zmk_behavior_get_binding(binding->behavior_dev);
     const struct behavior_alt_gui_morph_config *cfg = dev->config;
     struct behavior_alt_gui_morph_data *data = dev->data;
 
-    if (data->active[event.position]) {
-        LOG_ERR("Key position %d is already active", event.position);
-        return -EALREADY;
+    if (data->pressed_binding != NULL) {
+        LOG_ERR("Can't press the same Alt/GUI morph twice");
+        return -ENOTSUP;
     }
 
-    uint32_t keycode = binding->param1;
-    if (zmk_hid_get_explicit_mods() & cfg->mods) {
-        keycode = binding->param2;
-        zmk_hid_masked_modifiers_set(cfg->masked_mods);
+    zmk_mod_flags_t explicit_mods = zmk_hid_get_explicit_mods();
+    if (explicit_mods & (MOD_LGUI | MOD_RGUI)) {
+        /* GUI wins when Alt and GUI are both held. */
+        data->pressed_binding = (struct zmk_behavior_binding *)&cfg->gui_binding;
+        zmk_hid_masked_modifiers_set(MOD_LALT | MOD_RALT | MOD_LGUI | MOD_RGUI);
+    } else if (explicit_mods & (MOD_LALT | MOD_RALT)) {
+        data->pressed_binding = (struct zmk_behavior_binding *)&cfg->alt_binding;
+        zmk_hid_masked_modifiers_set(MOD_LALT | MOD_RALT | MOD_LGUI | MOD_RGUI);
+    } else {
+        data->pressed_binding = (struct zmk_behavior_binding *)&cfg->normal_binding;
     }
 
-    data->pressed_keycodes[event.position] = keycode;
-    data->active[event.position] = true;
-    return raise_zmk_keycode_state_changed_from_encoded(keycode, true, event.timestamp);
+    return zmk_behavior_invoke_binding(data->pressed_binding, event, true);
 }
 
 static int on_alt_gui_morph_released(struct zmk_behavior_binding *binding,
                                      struct zmk_behavior_binding_event event) {
-    if (event.position >= ZMK_KEYMAP_LEN) {
-        return -EINVAL;
-    }
-
     const struct device *dev = zmk_behavior_get_binding(binding->behavior_dev);
     struct behavior_alt_gui_morph_data *data = dev->data;
 
-    if (!data->active[event.position]) {
-        LOG_ERR("Key position %d is not active", event.position);
-        return -EINVAL;
+    if (data->pressed_binding == NULL) {
+        LOG_ERR("Alt/GUI morph already released");
+        return -ENOTSUP;
     }
 
-    uint32_t keycode = data->pressed_keycodes[event.position];
-    data->active[event.position] = false;
+    struct zmk_behavior_binding *pressed_binding = data->pressed_binding;
+    data->pressed_binding = NULL;
     zmk_hid_masked_modifiers_clear();
-    return raise_zmk_keycode_state_changed_from_encoded(keycode, false, event.timestamp);
+    return zmk_behavior_invoke_binding(pressed_binding, event, false);
 }
 
 static const struct behavior_driver_api behavior_alt_gui_morph_driver_api = {
@@ -82,12 +78,20 @@ static const struct behavior_driver_api behavior_alt_gui_morph_driver_api = {
 #endif
 };
 
+#define TRANSFORM_ENTRY(idx, node)                                                               \
+    {                                                                                            \
+        .behavior_dev = DEVICE_DT_NAME(DT_INST_PHANDLE_BY_IDX(node, bindings, idx)),           \
+        .param1 = COND_CODE_0(DT_INST_PHA_HAS_CELL_AT_IDX(node, bindings, idx, param1), (0),   \
+                              (DT_INST_PHA_BY_IDX(node, bindings, idx, param1))),               \
+        .param2 = COND_CODE_0(DT_INST_PHA_HAS_CELL_AT_IDX(node, bindings, idx, param2), (0),   \
+                              (DT_INST_PHA_BY_IDX(node, bindings, idx, param2))),               \
+    }
+
 #define ALT_GUI_MORPH_INST(n)                                                                    \
     static struct behavior_alt_gui_morph_config behavior_alt_gui_morph_config_##n = {          \
-        .mods = DT_INST_PROP(n, mods),                                                          \
-        .masked_mods =                                                                           \
-            COND_CODE_0(DT_INST_NODE_HAS_PROP(n, keep_mods), (DT_INST_PROP(n, mods)),          \
-                        (DT_INST_PROP(n, mods) & ~DT_INST_PROP(n, keep_mods))),                 \
+        .normal_binding = TRANSFORM_ENTRY(0, n),                                                \
+        .alt_binding = TRANSFORM_ENTRY(1, n),                                                   \
+        .gui_binding = TRANSFORM_ENTRY(2, n),                                                   \
     };                                                                                           \
     static struct behavior_alt_gui_morph_data behavior_alt_gui_morph_data_##n = {};            \
     BEHAVIOR_DT_INST_DEFINE(n, NULL, NULL, &behavior_alt_gui_morph_data_##n,                    \

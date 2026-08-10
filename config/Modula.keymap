@@ -186,10 +186,10 @@
             bindings = <&mkp MB4>, <&ag_n>;
             mods = <(MOD_LALT|MOD_RALT|MOD_LGUI|MOD_RGUI)>;
         };
-        vol_alt_tab: volume-alt-tab {
+        vol_alt_gui: volume-alt-gui {
             compatible = "zmk,behavior-sensor-rotate";
             #sensor-binding-cells = <0>;
-            bindings = <&vol_alt_gui_p>, <&vol_alt_gui_n>;
+            bindings = <&agm_vol_up>, <&agm_vol_down>;
             tap-ms = <10>;
         };
         vol_up_down: volume-up-down {
@@ -209,10 +209,20 @@
             mods = <(MOD_LALT|MOD_RALT)>;
             keep-mods = <(MOD_LALT)>;
         };
-        agm: alt-gui-morph {
+        agm_mute: alt-gui-mute {
             compatible = "modula,behavior-alt-gui-morph";
-            #binding-cells = <2>;
-            mods = <(MOD_LALT|MOD_RALT|MOD_LGUI|MOD_RGUI)>;
+            #binding-cells = <0>;
+            bindings = <&kp C_MUTE>, <&kp LC(TAB)>, <&kp RIGHT>;
+        };
+        agm_vol_up: alt-gui-volume-up {
+            compatible = "modula,behavior-alt-gui-morph";
+            #binding-cells = <0>;
+            bindings = <&kp C_VOL_UP>, <&kp LS(TAB)>, <&kp RIGHT>;
+        };
+        agm_vol_down: alt-gui-volume-down {
+            compatible = "modula,behavior-alt-gui-morph";
+            #binding-cells = <0>;
+            bindings = <&kp C_VOL_DN>, <&kp TAB>, <&kp LEFT>;
         };
 
     };
@@ -228,9 +238,9 @@
 &mth LSHIFT ESC &kp Z         &kp X         &kp C     &kp V             &kp B                   &kp N       &kp M           &kp COMMA   &kp DOT     &kp SLASH    &kp LGUI
 &kp  ESC        &trans        &trans        &lth SYMBOL SPACE &lth NAVNUM BSPC                  &kp LALT    &mt LSHFT RET               &tog MOUSE  &none &tog SYMBOL
 &mb4_alt_gui_n  &qmsc SCUP_S &none  &qmsc SCDN_S   &mb5_alt_gui_p            &kp LEFT    &kp UP          &kp C_MUTE  &kp DOWN   &kp RIGHT
-&agm C_MUTE LC(TAB)  &kp PSCRN
+&agm_mute  &kp PSCRN
 			>;
-            sensor-bindings = <&bri_up_down &vol_alt_tab>;
+            sensor-bindings = <&bri_up_down &vol_alt_gui>;
 		};
 		
 		symbol_layer {
@@ -243,7 +253,7 @@
 &mb4_alt_gui_n  &msc MOVE_Y(120)   &kp PSCRN  &msc MOVE_Y(-120)   &mb5_alt_gui_p            &kp LEFT    &kp UP          &kp C_MUTE  &kp DOWN   &kp RIGHT
 &kp HOME &kp END
 			>;
-            sensor-bindings = <&bri_up_down &vol_alt_tab>;
+            sensor-bindings = <&bri_up_down &vol_alt_gui>;
 		};
 		
 		navnum_layer {
@@ -256,7 +266,7 @@
 &mb4_alt_gui_n  &msc MOVE_Y(1200)   &kp PSCRN  &msc MOVE_Y(-1200)   &mb5_alt_gui_p            &kp LEFT    &kp UP          &kp C_MUTE  &kp DOWN   &kp RIGHT
 &kp HOME &kp END
 			>;
-            sensor-bindings = <&bri_up_down &vol_alt_tab>;
+            sensor-bindings = <&bri_up_down &vol_alt_gui>;
 		};
 		
 		function_layer {
@@ -269,7 +279,7 @@
 &mb4_alt_gui_n  &msc MOVE_Y(120)   &kp PSCRN  &msc MOVE_Y(-120)   &mb5_alt_gui_p            &kp LEFT    &kp UP          &kp C_MUTE  &kp DOWN   &kp RIGHT
 &kp HOME &kp END
 			>;
-            sensor-bindings = <&bri_up_down &vol_alt_tab>;
+            sensor-bindings = <&bri_up_down &vol_alt_gui>;
 		};
 		
 		device_layer {
@@ -282,7 +292,7 @@
 &mb4_alt_gui_n  &none   &none  &none   &mb5_alt_gui_p            &kp LEFT    &kp UP          &kp C_MUTE  &kp DOWN   &kp RIGHT
 &kp HOME &kp END
 			>;
-            sensor-bindings = <&bri_up_down &vol_alt_tab>;
+            sensor-bindings = <&bri_up_down &vol_alt_gui>;
 		};
 
         mouse_layer {
@@ -295,7 +305,7 @@
 &mb4_alt_gui_n  &msc MOVE_Y(120)   &kp PSCRN  &msc MOVE_Y(-120)   &mb5_alt_gui_p            &kp LEFT    &kp UP          &kp C_MUTE  &kp DOWN   &kp RIGHT
 &kp HOME &kp END
 			>;
-            sensor-bindings = <&bri_up_down &vol_alt_tab>;
+            sensor-bindings = <&bri_up_down &vol_alt_gui>;
 		};
 	};
 };
