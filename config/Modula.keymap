@@ -122,76 +122,6 @@
             bindings = <&msc MOVE_UP>, <&msc MOVE_DOWN>;
             tap-ms = <20>;
         };
-        alt_p: alt-positive {
-            compatible = "zmk,behavior-mod-morph";
-            #binding-cells = <0>;
-            bindings = <&kp 0>, <&kp TAB>;
-            mods = <(MOD_LALT|MOD_RALT)>;
-            keep-mods = <(MOD_LALT)>;
-        };
-        gui_p: gui-positive {
-            compatible = "zmk,behavior-mod-morph";
-            #binding-cells = <0>;
-            bindings = <&kp 0>, <&kp RIGHT>;
-            mods = <(MOD_LGUI|MOD_RGUI)>;
-            keep-mods = <(MOD_LGUI)>;
-        };
-        ag_p: alt-gui-positive {
-            compatible = "zmk,behavior-mod-morph";
-            #binding-cells = <0>;
-            bindings = <&gui_p>, <&alt_p>;
-            mods = <(MOD_LALT|MOD_RALT)>;
-        };
-        vol_alt_gui_p: volume-alt-gui-positive {
-            compatible = "zmk,behavior-mod-morph";
-            #binding-cells = <0>;
-            bindings = <&kp C_VOL_UP>, <&ag_p>;
-            mods = <(MOD_LALT|MOD_RALT|MOD_LGUI|MOD_RGUI)>;
-        };
-        mb5_alt_gui_p: mb5-alt-gui-positive {
-            compatible = "zmk,behavior-mod-morph";
-            #binding-cells = <0>;
-            bindings = <&mkp MB5>, <&ag_p>;
-            mods = <(MOD_LALT|MOD_RALT|MOD_LGUI|MOD_RGUI)>;
-        };
-        alt_n: alt-negative {
-            compatible = "zmk,behavior-mod-morph";
-            #binding-cells = <0>;
-            bindings = <&kp 0>, <&kp LS(TAB)>;
-            mods = <(MOD_LALT|MOD_RALT)>;
-            keep-mods = <(MOD_LALT)>;
-        };
-        gui_n: gui-negative {
-            compatible = "zmk,behavior-mod-morph";
-            #binding-cells = <0>;
-            bindings = <&kp 0>, <&kp LEFT>;
-            mods = <(MOD_LGUI|MOD_RGUI)>;
-            keep-mods = <(MOD_LGUI)>;
-        };
-        ag_n: alt-gui-negative {
-            compatible = "zmk,behavior-mod-morph";
-            #binding-cells = <0>;
-            bindings = <&gui_n>, <&alt_n>;
-            mods = <(MOD_LALT|MOD_RALT)>;
-        };
-        vol_alt_gui_n: volume-alt-gui-negative {
-            compatible = "zmk,behavior-mod-morph";
-            #binding-cells = <0>;
-            bindings = <&kp C_VOL_DN>, <&ag_n>;
-            mods = <(MOD_LALT|MOD_RALT|MOD_LGUI|MOD_RGUI)>;
-        };
-        mb4_alt_gui_n: mb4-alt-gui-negative {
-            compatible = "zmk,behavior-mod-morph";
-            #binding-cells = <0>;
-            bindings = <&mkp MB4>, <&ag_n>;
-            mods = <(MOD_LALT|MOD_RALT|MOD_LGUI|MOD_RGUI)>;
-        };
-        vol_alt_gui: volume-alt-gui {
-            compatible = "zmk,behavior-sensor-rotate";
-            #sensor-binding-cells = <0>;
-            bindings = <&agm_vol_up>, <&agm_vol_down>;
-            tap-ms = <10>;
-        };
         vol_up_down: volume-up-down {
             compatible = "zmk,behavior-sensor-rotate";
             #sensor-binding-cells = <0>;
@@ -202,29 +132,54 @@
             #sensor-binding-cells = <0>; 
             bindings = <&kp C_BRI_INC>, <&kp C_BRI_DEC>;
         };
-        alt_ctrl_mute: alt-control-mute {
-            compatible = "zmk,behavior-mod-morph";
-            #binding-cells = <0>;
-            bindings = <&kp C_MUTE>, <&kp LC(TAB)>;
-            mods = <(MOD_LALT|MOD_RALT)>;
-            keep-mods = <(MOD_LALT)>;
-        };
         agm_mute: alt-gui-mute {
             compatible = "modula,behavior-alt-gui-morph";
             #binding-cells = <0>;
-            bindings = <&kp C_MUTE>, <&kp LC(TAB)>, <&kp RIGHT>;
+            bindings = <&kp C_MUTE>, <&kp LC(TAB)>, <&kp 0>;
         };
         agm_vol_up: alt-gui-volume-up {
             compatible = "modula,behavior-alt-gui-morph";
             #binding-cells = <0>;
-            bindings = <&kp C_VOL_UP>, <&kp LS(TAB)>, <&kp RIGHT>;
+            bindings = <&kp C_VOL_UP>, <&kp TAB>, <&kp RIGHT>;
         };
         agm_vol_down: alt-gui-volume-down {
             compatible = "modula,behavior-alt-gui-morph";
             #binding-cells = <0>;
-            bindings = <&kp C_VOL_DN>, <&kp TAB>, <&kp LEFT>;
+            bindings = <&kp C_VOL_DN>, <&kp LS(TAB)>, <&kp LEFT>;
+        };
+        agm_bri_up: alt-gui-brightness-up {
+            compatible = "modula,behavior-alt-gui-morph";
+            #binding-cells = <0>;
+            bindings = <&kp C_BRI_INC>, <&kp TAB>, <&kp RIGHT>;
+        };
+        agm_bri_down: alt-gui-brightness-down {
+            compatible = "modula,behavior-alt-gui-morph";
+            #binding-cells = <0>;
+            bindings = <&kp C_BRI_DEC>, <&kp LS(TAB)>, <&kp LEFT>;
+        };
+        agm_mb5: alt-gui-mb5 {
+            compatible = "modula,behavior-alt-gui-morph";
+            #binding-cells = <0>;
+            bindings = <&mkp MB5>, <&kp TAB>, <&kp 0>;
+        };
+        agm_mb4: alt-gui-mb4 {
+            compatible = "modula,behavior-alt-gui-morph";
+            #binding-cells = <0>;
+            bindings = <&mkp MB4>, <&kp LS(TAB)>, <&kp 0>;
         };
 
+        vol_alt_gui: volume-alt-gui {
+            compatible = "zmk,behavior-sensor-rotate";
+            #sensor-binding-cells = <0>;
+            bindings = <&agm_vol_up>, <&agm_vol_down>;
+            tap-ms = <10>;
+        };
+        bri_alt_gui: brightness-alt-gui {
+            compatible = "zmk,behavior-sensor-rotate";
+            #sensor-binding-cells = <0>;
+            bindings = <&agm_bri_up>, <&agm_bri_down>;
+            tap-ms = <10>;
+        };
     };
 
 // arrow direction < ^ _ v >
@@ -237,10 +192,10 @@
 &mth LCTRL RET  &kp A         &kp S         &kp D     &kp F             &kp G                   &kp H       &kp J           &kp K       &kp L       &kp SEMI     &kp SQT
 &mth LSHIFT ESC &kp Z         &kp X         &kp C     &kp V             &kp B                   &kp N       &kp M           &kp COMMA   &kp DOT     &kp SLASH    &kp LGUI
 &kp  ESC        &trans        &trans        &lth SYMBOL SPACE &lth NAVNUM BSPC                  &kp LALT    &mt LSHFT RET               &tog MOUSE  &none &tog SYMBOL
-&mb4_alt_gui_n  &qmsc SCUP_S &none  &qmsc SCDN_S   &mb5_alt_gui_p            &kp LEFT    &kp UP          &kp C_MUTE  &kp DOWN   &kp RIGHT
+&agm_mb4  &qmsc SCUP_S &none  &qmsc SCDN_S   &agm_mb5            &kp LEFT    &kp UP          &kp C_MUTE  &kp DOWN   &kp RIGHT
 &agm_mute  &kp PSCRN
 			>;
-            sensor-bindings = <&bri_up_down &vol_alt_gui>;
+            sensor-bindings = <&bri_alt_gui &vol_alt_gui>;
 		};
 		
 		symbol_layer {
@@ -250,10 +205,10 @@
 &kp LCTRL &kp PLUS  &kp MINUS  &kp SLASH    &kp ASTRK        &kp EQUAL        &kp LANG1  &kp LBRC   &kp LBKT   &kp RBKT  &kp COLON &kp DQT
 &kp LSHIFT &kp PIPE &kp TILDE  &trans       &kp CARET        &kp AMPS         &kp LANG2  &kp RBRC   &kp LT     &kp GT    &kp QMARK &kp BSLH
 &trans       &trans       &trans                        &trans              &trans              &trans       &kp LS(RET)                 &trans       &trans       &trans 
-&mb4_alt_gui_n  &msc MOVE_Y(120)   &kp PSCRN  &msc MOVE_Y(-120)   &mb5_alt_gui_p            &kp LEFT    &kp UP          &kp C_MUTE  &kp DOWN   &kp RIGHT
+&agm_mb4  &msc MOVE_Y(120)   &kp PSCRN  &msc MOVE_Y(-120)   &agm_mb5            &kp LEFT    &kp UP          &kp C_MUTE  &kp DOWN   &kp RIGHT
 &kp HOME &kp END
 			>;
-            sensor-bindings = <&bri_up_down &vol_alt_gui>;
+            sensor-bindings = <&bri_alt_gui &vol_alt_gui>;
 		};
 		
 		navnum_layer {
@@ -263,10 +218,10 @@
 &kp LCTRL    &kp LC(A) &kp LSHIFT &mkp MCLK &mkp LCLK &mkp RCLK &kp UP    &kp LEFT  &kp DOWN &kp RIGHT &kp BSPC &kp DEL
 &kp LSHIFT   &kp LC(Z) &kp LC(X)  &kp LC(C) &kp LC(V) &kp LC(Y) &kp PG_UP &kp PG_DN &kp HOME &kp END   &trans   &kp PSCRN
 &trans       &trans    &trans               &trans    &trans    &trans    &trans             &trans    &trans   &trans
-&mb4_alt_gui_n  &msc MOVE_Y(1200)   &kp PSCRN  &msc MOVE_Y(-1200)   &mb5_alt_gui_p            &kp LEFT    &kp UP          &kp C_MUTE  &kp DOWN   &kp RIGHT
+&agm_mb4  &msc MOVE_Y(1200)   &kp PSCRN  &msc MOVE_Y(-1200)   &agm_mb5            &kp LEFT    &kp UP          &kp C_MUTE  &kp DOWN   &kp RIGHT
 &kp HOME &kp END
 			>;
-            sensor-bindings = <&bri_up_down &vol_alt_gui>;
+            sensor-bindings = <&bri_alt_gui &vol_alt_gui>;
 		};
 		
 		function_layer {
@@ -276,10 +231,10 @@
 &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans  &kp F12
 &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans  &trans
 &trans &trans &trans        &trans &trans &trans &trans        &trans &trans  &trans
-&mb4_alt_gui_n  &msc MOVE_Y(120)   &kp PSCRN  &msc MOVE_Y(-120)   &mb5_alt_gui_p            &kp LEFT    &kp UP          &kp C_MUTE  &kp DOWN   &kp RIGHT
+&agm_mb4  &msc MOVE_Y(120)   &kp PSCRN  &msc MOVE_Y(-120)   &agm_mb5            &kp LEFT    &kp UP          &kp C_MUTE  &kp DOWN   &kp RIGHT
 &kp HOME &kp END
 			>;
-            sensor-bindings = <&bri_up_down &vol_alt_gui>;
+            sensor-bindings = <&bri_alt_gui &vol_alt_gui>;
 		};
 		
 		device_layer {
@@ -289,10 +244,10 @@
 &trans            &trans           &trans           &trans           &trans           &trans               &trans            &trans           &trans           &trans           &trans           &trans
 &trans            &trans           &trans           &trans           &trans           &trans               &trans            &trans           &trans           &trans           &trans           &trans
 &trans            &trans           &trans                            &trans           &trans               &trans            &trans                            &trans           &trans           &trans
-&mb4_alt_gui_n  &none   &none  &none   &mb5_alt_gui_p            &kp LEFT    &kp UP          &kp C_MUTE  &kp DOWN   &kp RIGHT
+&agm_mb4  &none   &none  &none   &agm_mb5            &kp LEFT    &kp UP          &kp C_MUTE  &kp DOWN   &kp RIGHT
 &kp HOME &kp END
 			>;
-            sensor-bindings = <&bri_up_down &vol_alt_gui>;
+            sensor-bindings = <&bri_alt_gui &vol_alt_gui>;
 		};
 
         mouse_layer {
@@ -302,10 +257,10 @@
 &trans  &trans  &trans  &mkp MCLK  &mkp LCLK  &mkp RCLK                     &mkp RCLK  &mkp LCLK  &mkp MCLK &trans  &mo SYMBOL &trans
 &trans  &trans  &trans  &trans  &trans  &trans                              &trans  &trans  &trans  &trans  &trans  &trans
 &trans  &trans  &trans          &trans  &trans                              &trans  &trans          &trans  &trans  &trans
-&mb4_alt_gui_n  &msc MOVE_Y(120)   &kp PSCRN  &msc MOVE_Y(-120)   &mb5_alt_gui_p            &kp LEFT    &kp UP          &kp C_MUTE  &kp DOWN   &kp RIGHT
+&agm_mb4  &msc MOVE_Y(120)   &kp PSCRN  &msc MOVE_Y(-120)   &agm_mb5            &kp LEFT    &kp UP          &kp C_MUTE  &kp DOWN   &kp RIGHT
 &kp HOME &kp END
 			>;
-            sensor-bindings = <&bri_up_down &vol_alt_gui>;
+            sensor-bindings = <&bri_alt_gui &vol_alt_gui>;
 		};
 	};
 };
