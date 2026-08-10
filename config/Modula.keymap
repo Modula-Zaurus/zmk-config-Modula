@@ -160,12 +160,12 @@
         agm_mb5: alt-gui-mb5 {
             compatible = "modula,behavior-alt-gui-morph";
             #binding-cells = <0>;
-            bindings = <&mkp MB5>, <&kp TAB>, <&kp 0>;
+            bindings = <&mkp MB5>, <&kp TAB>, <&kp RIGHT>;
         };
         agm_mb4: alt-gui-mb4 {
             compatible = "modula,behavior-alt-gui-morph";
             #binding-cells = <0>;
-            bindings = <&mkp MB4>, <&kp LS(TAB)>, <&kp 0>;
+            bindings = <&mkp MB4>, <&kp LS(TAB)>, <&kp LEFT>;
         };
 
         vol_alt_gui: volume-alt-gui {
