@@ -53,7 +53,7 @@ manifest:
 
     - name: zmk-behavior-jp
       remote: BP
-      revision: v0.3
+      revision: main
 
     # - name: zmk-layout-shift
     #   remote: kot149
