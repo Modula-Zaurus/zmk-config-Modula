@@ -51,6 +51,11 @@
 	steps = <60>;
 };
 
+/* The first sensor is right_encoder, so assign the module EC11 to display brightness. */
+&vol_up_down {
+	bindings = <&kp C_BRI_INC>, <&kp C_BRI_DEC>;
+};
+
 // &pointer {
 //     status = "okay";
 //     device = <&trackball>;
