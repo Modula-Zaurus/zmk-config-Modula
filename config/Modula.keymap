@@ -209,6 +209,11 @@
             mods = <(MOD_LALT|MOD_RALT)>;
             keep-mods = <(MOD_LALT)>;
         };
+        agm: alt-gui-morph {
+            compatible = "modula,behavior-alt-gui-morph";
+            #binding-cells = <2>;
+            mods = <(MOD_LALT|MOD_RALT|MOD_LGUI|MOD_RGUI)>;
+        };
 
     };
 
@@ -223,7 +228,7 @@
 &mth LSHIFT ESC &kp Z         &kp X         &kp C     &kp V             &kp B                   &kp N       &kp M           &kp COMMA   &kp DOT     &kp SLASH    &kp LGUI
 &kp  ESC        &trans        &trans        &lth SYMBOL SPACE &lth NAVNUM BSPC                  &kp LALT    &mt LSHFT RET               &tog MOUSE  &none &tog SYMBOL
 &mb4_alt_gui_n  &qmsc SCUP_S &none  &qmsc SCDN_S   &mb5_alt_gui_p            &kp LEFT    &kp UP          &kp C_MUTE  &kp DOWN   &kp RIGHT
-&alt_ctrl_mute  &kp PSCRN
+&agm C_MUTE LC(TAB)  &kp PSCRN
 			>;
             sensor-bindings = <&bri_up_down &vol_alt_tab>;
 		};
