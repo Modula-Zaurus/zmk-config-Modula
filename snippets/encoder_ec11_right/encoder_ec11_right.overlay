@@ -1,0 +1,7 @@
+/* EC11 slot 2: P1.12 (A), P1.15 (B). */
+&right_encoder {
+    status = "okay";
+    a-gpios = <&gpio1 12 GPIO_ACTIVE_HIGH>;
+    b-gpios = <&gpio1 15 GPIO_ACTIVE_HIGH>;
+    steps = <60>;
+};

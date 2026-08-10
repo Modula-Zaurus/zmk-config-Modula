@@ -16,7 +16,8 @@ include:
 
   - board: seeeduino_xiao_ble
     shield: Modula_L rgbled_adapter
-    snippet: trackball_pat9125
+    # Modules are independent: PAT9125 can coexist with either EC11 snippet.
+    snippet: trackball_pat9125 encoder_ec11_left
     # snippet: studio-rpc-usb-uart
     artifact-name: Modula_L
 
