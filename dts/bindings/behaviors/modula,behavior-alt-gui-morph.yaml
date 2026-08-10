@@ -1,0 +1,10 @@
+description: Select a binding for normal, Alt, or GUI input
+
+compatible: "modula,behavior-alt-gui-morph"
+
+include: zero_param.yaml
+
+properties:
+  bindings:
+    type: phandle-array
+    required: true
