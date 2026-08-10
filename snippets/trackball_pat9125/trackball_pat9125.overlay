@@ -1,7 +1,5 @@
 #include <zephyr/dt-bindings/input/input-event-codes.h>
 #include <input/processors.dtsi>
-#include <input/processors/report_rate_limit.dtsi>
-#include <input/processors/xyz.dtsi>
 #include "../pinctrl_i2c.dtsi"
 #include "../listners.dtsi"
 
@@ -42,10 +40,20 @@
 
 &split_peripheral {
 	status = "okay";
-  	device = <&trackball_pat9125>;
-	input-processors
-		= <&zip_report_rate_limit 10>
-		, <&zip_xyz>;
+	device = <&trackball_pat9125>;
+};
+
+/* EC11 integrated on the PAT9125 module: P1.12 (A), P1.15 (B). */
+&right_encoder {
+	status = "okay";
+	a-gpios = <&gpio1 12 GPIO_ACTIVE_HIGH>;
+	b-gpios = <&gpio1 15 GPIO_ACTIVE_HIGH>;
+	steps = <60>;
+};
+
+/* The first sensor is right_encoder, so assign the module EC11 to display brightness. */
+&vol_up_down {
+	bindings = <&kp C_BRI_INC>, <&kp C_BRI_DEC>;
 };
 
 // &pointer {

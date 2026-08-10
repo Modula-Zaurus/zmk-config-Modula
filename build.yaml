@@ -8,15 +8,18 @@ include:
 
   - board: seeeduino_xiao_ble
     shield: Modula_R rgbled_adapter
-    snippet: trackball_paw3222
+    # Choose one PWM feedback snippet:
+    # - typing_pwm: WPM-driven PWM feedback
+    # - pwm_backlight_runtime: ZMK backlight PWM owner
+    snippet: trackball_paw3222 typing_pwm
     artifact-name: Modula_R
 
   - board: seeeduino_xiao_ble
     shield: Modula_L rgbled_adapter
-    snippet: trackball_pat9125
+    # Modules are independent: PAT9125 can coexist with either EC11 snippet.
+    snippet: trackball_pat9125 encoder_ec11_left
     # snippet: studio-rpc-usb-uart
     artifact-name: Modula_L
 
   - board: seeeduino_xiao_ble
     shield: settings_reset
-

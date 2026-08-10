@@ -1,0 +1,4 @@
+name: pwm_backlight_runtime
+append:
+  EXTRA_DTC_OVERLAY_FILE: pwm_backlight_runtime.overlay
+  EXTRA_CONF_FILE: pwm_backlight_runtime.conf

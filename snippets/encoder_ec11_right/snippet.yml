@@ -1,0 +1,4 @@
+name: encoder_ec11_right
+append:
+  EXTRA_DTC_OVERLAY_FILE: encoder_ec11_right.overlay
+  EXTRA_CONF_FILE: encoder_ec11_right.conf
