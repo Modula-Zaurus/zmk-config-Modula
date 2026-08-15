@@ -4,7 +4,7 @@
     #size-cells = <0>;
     
     split_peripheral: split_peripheral@0 {
-      status = "disabled";
+      // status = "disabled";
       compatible = "zmk,input-split";
       reg = <0>;
     };
@@ -18,6 +18,6 @@
   listner_peripheral: listner_peripheral {
     compatible = "zmk,input-listener";
     status = "disabled";
-    device = <&split_peripheral>;
+    // device = <&split_peripheral>;
   };
 };
