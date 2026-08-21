@@ -46,12 +46,12 @@
 &listner_peripheral{
     status = "okay";
     device = <&split_peripheral>;
-    input-processors
-        = <&zip_xy_swap_mapper>
-        , <&zip_x_scaler 0 1>
-        , <&zip_y_scaler 2 1>
-		, <&zip_xy_to_scroll_mapper>
-		;
+    // input-processors
+    //     = <&zip_xy_swap_mapper>
+    //     , <&zip_x_scaler 0 1>
+    //     , <&zip_y_scaler 2 1>
+	// 	, <&zip_xy_to_scroll_mapper>
+	// 	;
 };
 
 // &pointer {
