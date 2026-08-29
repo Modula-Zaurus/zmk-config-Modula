@@ -19,7 +19,7 @@
     typing_pwm: typing-pwm {
         compatible = "zmk,typing-pwm";
         pwms = <&pwm0 0 PWM_MSEC(10) PWM_POLARITY_NORMAL>;
-        force-min = <1>;
+        force-min = <0>;
         force-max = <100>;
         bucket-capacity = <100>;
         bucket-fill-per-key = <10>;
