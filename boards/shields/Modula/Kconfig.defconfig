@@ -1,6 +1,10 @@
 if SHIELD_MODULA_R
     config ZMK_SPLIT_ROLE_CENTRAL
         default y
+    config BT_MAX_CONN
+        default 8
+    config BT_MAX_PAIRED
+        default 8
 endif
 
 if SHIELD_MODULA_R||SHIELD_MODULA_L

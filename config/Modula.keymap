@@ -192,7 +192,7 @@
 &mth LCTRL RET  &kp A         &kp S         &kp D     &kp F             &kp G                   &kp H       &kp J           &kp K       &kp L       &kp SEMI     &kp SQT
 &mth LSHIFT ESC &kp Z         &kp X         &kp C     &kp V             &kp B                   &kp N       &kp M           &kp COMMA   &kp DOT     &kp SLASH    &kp LGUI
 &kp  ESC        &trans        &trans        &lth SYMBOL SPACE &lth NAVNUM BSPC                  &kp LALT    &mt LSHFT RET               &tog MOUSE  &none &tog SYMBOL
-&agm_mb4  &qmsc SCUP_S &none  &qmsc SCDN_S   &agm_mb5            &kp LEFT    &kp UP          &kp C_MUTE  &kp DOWN   &kp RIGHT
+&agm_mb4  &qmsc SCUP_S &agm_mute  &qmsc SCDN_S   &agm_mb5            &kp LEFT    &kp UP          &kp C_MUTE  &kp DOWN   &kp RIGHT
 &agm_mute  &kp PSCRN
 			>;
             sensor-bindings = <&bri_alt_gui &vol_alt_gui>;
